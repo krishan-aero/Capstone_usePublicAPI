@@ -1,6 +1,30 @@
-<h1>Hello, this is weather App</h1>
-<% if (locals.content) { %>
-    <h2><%= content.name %></h2>
-    <h3> Temperature is <%= content.weather.temp2m %> &#176C</h3>
-    <h3>It's a <%= content.weather.weather %></h3>
-<% } %>
+ <!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Titan+One&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="styles/main.css">
+
+</head>
+
+<body>
+    <% if (locals.content) { %>
+        <article class="widget">
+            <div class="weatherIcon"><i class="wi wi-day-cloudy"></i>
+                <div class="place"><%= content.name %></div></div>
+            <div class="weatherInfo">
+              <div class="temperature"><span><%= content.weather.temp2m %>&deg;</span></div>
+              <div class="description">    
+                <div class="weatherCondition"><%= content.weather.weather %></div>    
+              </div>
+            </div>
+            <div class="date"><%= content.date %> <%= content.day %></div>
+          </article>
+    
+    <% } else {%>
+     <h2>Data not available</h2>
+     <% } %>
+</body>
+
+</html>

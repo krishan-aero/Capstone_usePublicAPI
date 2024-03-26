@@ -5,9 +5,17 @@ import bodyParser from "body-parser";
 const port = 3000;
 const app  = express();
 
+const weekday = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+const month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"];
+const date = new Date();
+
 let cityLat;
 let cityLong;
 let cityName;
+
+// middlewares
+app.use(express.static("public"));
+app.use(bodyParser.urlencoded({extended: true}));
 
 // weather API
 const API_URL = "http://www.7timer.info/bin/api.pl";
@@ -21,7 +29,7 @@ const geoConfig ={
         "X-Api-Key" : API_KEY,
     },
     params : {
-        "city": "Sapporo",
+        "city": "london",
     }
 }
 
@@ -55,7 +63,7 @@ app.get("/", async(req, res) => {
     try {
         const result = await axios.get(API_URL, config);
         console.log(result.data.dataseries[1]);
-        res.render("index.ejs", {content : {name : cityName, weather: result.data.dataseries[1]}});
+        res.render("index.ejs", {content : {name : cityName, weather: result.data.dataseries[1], date : date.getDate(), day: weekday[date.getDay()]}});
     } catch (error) {
         res.render("index.ejs", JSON.stringify(error.response.data));
     }
