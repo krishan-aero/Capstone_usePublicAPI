@@ -15,7 +15,7 @@ let cityName;
 
 // middlewares
 app.use(express.static("public"));
-app.use(bodyParser.urlencoded({extended: true}));
+// app.use(bodyParser.urlencoded({extended: true}));
 
 // weather API
 const API_URL = "http://www.7timer.info/bin/api.pl";
@@ -24,12 +24,13 @@ const API_URL = "http://www.7timer.info/bin/api.pl";
 const GEO_API = "https://api.api-ninjas.com/v1/geocoding";
 const API_KEY = "U81ysG9z7bNCmWeX7VTG6A==2zEULYk7YKqqfWbP";
 
+// contruct config for API call
 const geoConfig ={
     headers:{
         "X-Api-Key" : API_KEY,
     },
     params : {
-        "city": "london",
+        "city": "berlin",
     }
 }
 
