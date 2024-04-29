@@ -30,7 +30,7 @@ const geoConfig ={
         "X-Api-Key" : API_KEY,
     },
     params : {
-        "city": "berlin",
+        "city": "delhi",
     }
 }
 

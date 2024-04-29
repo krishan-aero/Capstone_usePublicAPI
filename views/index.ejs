@@ -9,6 +9,15 @@
 </head>
 
 <body>
+    <div class="cityInput">
+        <form action=”/” method=”post”>
+
+            <input id="city" type=”text” placeholder="Enter the city name" name=”cityName” required>
+            
+            <button class="btn btn-primary" type=”submit” value=”submit”>Submit</button>
+            
+        </form>
+    </div>
     <% if (locals.content) { %>
         <article class="widget">
             <div class="weatherIcon"><i class="wi wi-day-cloudy"></i>
