@@ -7,6 +7,59 @@ body {
   font-family: Poiret One;
 }
 
+.cityInput{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    display: flex;
+    height: 30px;
+    width: 600px;
+    transform: translate(-50%, -50%);
+}
+
+#city{
+    height: 20px;
+    width: 510px;
+    top: 20%;
+    vertical-align: middle;
+}
+
+
+.btn {
+    display: inline-block;
+    width: 100px;
+    height: 36px;
+    border-radius: 18px;
+    vertical-align: middle;
+    background-color: #1c89ff;
+    border: solid 1px transparent;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 250;
+    cursor: pointer;
+    transition: all .1s ease-in-out;
+    &:hover {
+        color: #fff;
+        background-color: #0069d9;
+        border-color: #0062cc;
+        transition: all .1s ease-in-out;
+    }
+}
+
+.btn-primary {
+    color: black;
+    background-color: #007bff;
+    border-color: #007bff;
+    height: 25px;
+    width: 75px;
+}
+
+  /* .btn-primary:hover {
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc;
+  } */
+
 .widget {
   position: absolute;
   top: 50%;

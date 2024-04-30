@@ -11,11 +11,10 @@ const date = new Date();
 
 let cityLat;
 let cityLong;
-let cityName;
+let cityName = "Tokyo";
 
 // middlewares
 app.use(express.static("public"));
-// app.use(bodyParser.urlencoded({extended: true}));
 
 // weather API
 const API_URL = "http://www.7timer.info/bin/api.pl";
@@ -24,20 +23,29 @@ const API_URL = "http://www.7timer.info/bin/api.pl";
 const GEO_API = "https://api.api-ninjas.com/v1/geocoding";
 const API_KEY = "U81ysG9z7bNCmWeX7VTG6A==2zEULYk7YKqqfWbP";
 
-// contruct config for API call
-const geoConfig ={
-    headers:{
-        "X-Api-Key" : API_KEY,
-    },
-    params : {
-        "city": "berlin",
-    }
-}
 
 app.use(bodyParser.urlencoded({extended: true}));
 
+app.post("/submit", (req, res) => {
+    if (req.body.city) {
+        cityName = req.body.city;
+    } else {
+        cityName = "Tokyo";
+    }
+    res.redirect("/");
+})
 
 app.get("/", async(req, res) => {
+
+    // contruct config for API call
+    const geoConfig ={
+        headers:{
+            "X-Api-Key" : API_KEY,
+        },
+        params : {
+            "city": cityName,
+        }
+    }
 
     // get the lat and long of the location
     try {
@@ -69,16 +77,6 @@ app.get("/", async(req, res) => {
         res.render("index.ejs", JSON.stringify(error.response.data));
     }
 })
-
-// app.get("/", async(req, res) => {
-//     try {
-//         const result = await axios.get(GEO_API, geoConfig);
-//         console.log(result.data);
-//         res.render("index.ejs");
-//     } catch (error) {
-//         res.render("index.ejs", JSON.stringify(error.response.data));
-//     }
-// })
 
 app.listen(port, () => {
     console.log(`Listening at port ${port}`);
